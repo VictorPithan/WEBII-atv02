@@ -1,0 +1,28 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  padding: 20px;
+}
+
+:focus {
+  outline: 0;
+}
+
+:root {
+  --color1: #6a233a;
+  --color2: #893044;
+  --color3: #bc4855;
+  --color4: #ff6d6b;
+  --color5: #ffa184;
+
+  --color6: #801e36;
+  --color7: #a52b3e;
+  --color8: #e0444a;
+  --color9: #ff7964;
+  --color10: #ffb779;
+}

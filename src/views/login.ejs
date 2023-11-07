@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/globals.css" />
+  <link rel="stylesheet" href="/css/login.css" />
+  <title>Fake Pinterest</title>
+</head>
+<body>
+  <div class="containerLogin">
+    <div class="containerLoginImage">
+      <img class="" src="assets/icon-pinterest-fake.png" alt="Icone Pinterest Fake">
+      <h2 class="">Faça login em sua conta</h2>
+    </div>
+  
+    <div class="formLogin">
+      <form class="" method="POST">
+        <div class="inputEmail">
+          <label for="email" class="">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+        </div>
+  
+
+        <div class="inputPassword">
+          <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Senha</label>
+          <input id="password" name="password" type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+        </div>
+
+        <button type="submit" class="btn-login">Entrar</button>
+
+      </form>
+  
+      <p class="messageNotMember">
+        Não possui conta?
+        <a href="/create-user" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Cadastre-se aqui</a>
+      </p>
+    </div>
+  </div>
+</body>
+</html>
