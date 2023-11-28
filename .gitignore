@@ -130,4 +130,10 @@ dist
 .pnp.*
 
 # BANCO DE DADOS SQLITE3
-.db
+*.db
+
+# MIGRATIONS
+/migrations
+
+# UPLOADS
+/public/uploads/

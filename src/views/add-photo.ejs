@@ -9,65 +9,63 @@
 </head>
 <body>
 
-<form method="post" enctype="multipart/form-data">
-  <div class="containerForm">
-    <div class="container">
-      <h2 class="">Adicionar foto</h2>
+  <form method="post" enctype="multipart/form-data">
+    <div class="containerForm">
+      <div class="container">
+        <h1 class="">Adicionar foto</h1>
 
-      <div class="containerInputs">
-        <div class="containerTitle">
-          <label for="title" class="">Título</label>
-            <div class="">
-              <input type="text" name="title" id="title" autocomplete="" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">
-            </div>
-        </div>
-
-        <div class="containerDescription">
-          <label for="description" class="block text-sm font-medium leading-6 text-gray-900">Descrição</label>
-          <div class="mt-2">
-            <textarea id="description" name="description" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></textarea>
+        <div class="containerInputs">
+          <div class="containerTitle">
+            <label for="title" class="">Título</label>
+            <input type="text" name="title" id="title" autocomplete="" class="">
+            <% if (locals.errors && errors.title) { %>
+              <p class="error"><%= errors.title %></p>
+            <% } %>
           </div>
-          <p class="mt-3 text-sm leading-6 text-gray-600">Descreva em poucas sentenças sobre a sua foto.</p>
-        </div>
 
-        <div class="containerDescription">
-          <label for="photo-preview" class="block text-sm font-medium leading-6 text-gray-900">Preview Foto</label>
-          <!-- <div class="mt-2 flex items-center gap-x-3">
-            <svg class="h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path fill-rule="evenodd" d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" clip-rule="evenodd" />
-            </svg>
-            <button type="button" class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">Change</button>
-          </div> -->
-        </div>
+          <div class="containerDescription">
+            <label for="description" class="">Descrição</label>
+            <textarea id="description"name="description" rows="3" class="" placeholder="Descreva em poucas sentenças sobre a sua foto."></textarea>
+            <% if (locals.errors && errors.description) { %>
+              <p class="error"><%= errors.description %></p>
+            <% } %>
+          </div>
 
-        <div class="containerDescription">
-          <label for="photo" class="labelPhoto">Foto</label>
-          <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
-            <div class="" style="text-align:center;">
-              <!-- <svg class="mx-auto h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z" clip-rule="evenodd" />
-              </svg> -->
-              <div class="containerUploadPhoto">
-                <label for="file-upload" class="">
-                  <span>Upload a file</span>
-                  <input id="file-upload" name="file-upload" type="file" class="sr-only">
-                </label>
+          <div class="containerTags">
+            <label for="tags" class="">Tags</label>
+            <input type="text" name="tags" id="tags" placeholder="ex.: #tag#tag">
+            <% if (locals.errors && errors.tags) { %>
+              <p class="error"><%= errors.tags %></p>
+            <% } %>
+          </div>
+
+          <div class="containerDescription">
+            <span class="labelPhoto">Upload a file</span>
+            <div class="">
+              <div class="box-dashed">
+                <div class="containerUploadPhoto">
+                  <label for="file-upload" class="">
+                    <input id="file-upload" name="file-upload" type="file" class="sr-only">
+                  </label>
+                </div>
+                <p class="">PNG, JPG, GIF, JPEG</p>
               </div>
-              <p class="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 10MB</p>
             </div>
+            <% if (locals.errors && errors.file) { %>
+              <p class="error"><%= errors.file %></p>
+            <% } %>
           </div>
         </div>
       </div>
+
+
     </div>
 
-
-  </div>
-
-  <div class="containerBtn">
-    <button type="button" class="btnCancel">Cancel</button>
-    <button type="submit" class="btnSave">Save</button>
-  </div>
-</form>
+    <div class="containerBtn">
+      <a href="/home" type="button" class="btnCancel">Cancel</a>
+      <button type="submit" class="btnSave">Save</button>
+    </div>
+  </form>
 
 </body>
 </html>

@@ -35,7 +35,7 @@ db.then(() => {
 app.use(usersRouter)
 
 app.use('*', (req, res) => {
-  res.redirect('/')
+  res.redirect('/page-not-found')
 })
 
 const PORT = process.env.PORT || 3000

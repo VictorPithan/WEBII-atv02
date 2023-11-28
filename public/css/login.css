@@ -1,6 +1,6 @@
 .containerLogin {
   display: flex;
-  width: 600px;
+  width: 450px;
   min-height: 100%;
   flex-direction: column;
   justify-content: center;
@@ -8,6 +8,9 @@
   padding-block: 32px;
   align-items: center;
   margin: 0 auto;
+  background: white;
+  margin-top: 200px;
+  border-radius: 0.375rem;
 }
 
 .containerLoginImage {
@@ -40,6 +43,19 @@
   width: 100%;
 }
 
+.form-create-user {
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+}
+
+.inputEmail,
+.inputPassword {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
 .inputEmail > label,
 .inputPassword > label{
   display: block;
@@ -51,7 +67,6 @@
 
 .inputEmail > input,
 .inputPassword > input {
-  margin-top: 8px;
   width: 100%;
   padding-inline: 0.25rem;
   padding-block: 0.25rem;
@@ -70,7 +85,7 @@
   margin-top: 20px;
   justify-content: center;
   border-radius: 0.375rem;
-  background-color: rgb(79 70 229);
+  background-color: #151557;
   padding-block: 6px;
   font-size: 0.875rem;
   font-weight: 600;
@@ -80,12 +95,21 @@
 }
 
 .btn-login:hover {
-	background-color: rgb(99 102 241);
+	background-color: #212187;
 }
 
 .btn-login:focus-visible {
 	outline-style: solid;
   outline-width: 2px;
   outline-offset: 2px;
-  outline-color: rgb(79 70 229);
+  outline-color: #212187;
+}
+
+.wrong {
+  border: 2px solid crimson;
+}
+
+.error {
+  color: crimson;
+  font-size: 14px;
 }

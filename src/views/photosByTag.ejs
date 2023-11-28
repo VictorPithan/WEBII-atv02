@@ -8,7 +8,6 @@
   <title>Home</title>
 </head>
 <body class="w3-content">
-
   <nav class="w3-sidebar w3-collapse w3-animate-left" id="mySidebar"><br>
     <div class="w3-container avatarContainer">
       <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding" title="close menu">
@@ -20,10 +19,10 @@
       <h4><b><%= user.firstname + ' ' + user.lastname%></b></h4>
     </div>
     <div class="w3-bar-block">
-      <a href="/home" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="ph-thin ph-house"></i>Home</a> 
-      <a href="/add-photo" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="ph-thin ph-camera-plus"></i>Adicionar foto</a>
-      <a href="/friend-list" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="ph-thin ph-user-list"></i>Lista de Usuários</a>
-      <a href="/logout" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="ph-thin ph-x"></i>Sair</a>
+      <a href="/home" onclick="w3_close()" class="w3-bar-item w3-button w3-padding">Home</a> 
+      <a href="/add-photo" onclick="w3_close()" class="w3-bar-item w3-button w3-padding">Adicionar foto</a>
+      <a href="/friend-list" onclick="w3_close()" class="w3-bar-item w3-button w3-padding">Lista de Amigos</a>
+      <a href="/logout" onclick="w3_close()" class="w3-bar-item w3-button w3-padding">Sair</a>
     </div>
   </nav>
   
@@ -32,18 +31,26 @@
   <div class="w3-main" style="margin-left:300px">
     
     <main class="">
-      <form method="post" action="/tags" class="">
+      <form method="post" class="">
         <label for="tagName" class="">Filter:
           <input type="text" name="tagName" id="tagName" placeholder="Buscar por tag">
         </label>
         <button type="submit" class="">Buscar</button>
       </form>
-      <h1><b>Minhas fotos</b></h1>
+      <h1><b>
+        Fotos:
+        <%if (photosByTagName[0]?.tagName) { %>
+          <%= photosByTagName[0]?.tagName %>
+        <% } else { %>
+          nenhuma foto encontrada.
+        <% } %>
+        </b></h1>
+
       <div class="w3-row-padding model grid">
-        <% for(let i = 0; i < photos.length; i++) {%>
+        <% for(let i = 0; i < photosByTagName.length; i++) {%>
           <div class="container">
-            <a href="/photo/<%= photos[i].id %>">
-              <img src="/uploads/<%= photos[i].url %>" alt="" loading="lazy">
+            <a href="/photo/<%= photosByTagName[i].photos.id %>">
+              <img src="/uploads/<%= photosByTagName[i].photos.url %>" alt="" loading="lazy">
             </a>
           </div>
 
@@ -59,19 +66,18 @@
       <%} %>
     </div>
   
-     
   </div>
   
   <script>
-  function w3_open() {
-      document.getElementById("mySidebar").style.display = "block";
-      document.getElementById("myOverlay").style.display = "block";
-  }
-   
-  function w3_close() {
-      document.getElementById("mySidebar").style.display = "none";
-      document.getElementById("myOverlay").style.display = "none";
-  }
+    function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+        document.getElementById("myOverlay").style.display = "block";
+    }
+    
+    function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+        document.getElementById("myOverlay").style.display = "none";
+    }
   </script>
   
   </body>

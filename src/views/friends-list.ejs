@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/css/home.css" />
+  <link rel="stylesheet" href="/css/friend-list.css" />
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
   <title>Home</title>
 </head>
-<body class="w3-content">
+<body class="w3-content" style="max-width:1600px">
 
+  <!-- Sidebar/menu -->
   <nav class="w3-sidebar w3-collapse w3-animate-left" id="mySidebar"><br>
     <div class="w3-container avatarContainer">
       <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding" title="close menu">
@@ -27,39 +28,36 @@
     </div>
   </nav>
   
+
   <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
   
-  <div class="w3-main" style="margin-left:300px">
+  <div class="w3-main" style="margin-left:50px">
+  
+    <header id="portfolio">
+      <span class="w3-button w3-hide-large w3-xxlarge " onclick="w3_open()"><i class="ph-thin ph-article"></i></span>
+      <div class="w3-hide-large avatarWithBorderPortifolio">
+        <span style="font-size: 32px;"><%= user.firstname.charAt(0) + user.lastname.charAt(0)%></span><br><br>
+      </div>
+    </header>
     
     <main class="">
-      <form method="post" action="/tags" class="">
-        <label for="tagName" class="">Filter:
-          <input type="text" name="tagName" id="tagName" placeholder="Buscar por tag">
-        </label>
-        <button type="submit" class="">Buscar</button>
-      </form>
-      <h1><b>Minhas fotos</b></h1>
-      <div class="w3-row-padding model grid">
-        <% for(let i = 0; i < photos.length; i++) {%>
-          <div class="container">
-            <a href="/photo/<%= photos[i].id %>">
-              <img src="/uploads/<%= photos[i].url %>" alt="" loading="lazy">
-            </a>
-          </div>
+      
+      <div class="containerList">
+        <h1><b>Lista de Usuários</b></h1>
 
-        <% } %>
+        <div class="list-user">
+          <% for(let i = 0; i < listUser.length; i++) {%>
+            <a href="/friend-profile/<%= listUser[i].id %>" class="userProfile">
+              <div class="avatarProfile">
+                <%= listUser[i].firstname.charAt(0) + listUser[i].lastname.charAt(0)%>
+              </div>
+              <span><%= listUser[i].firstname + ' ' + listUser[i].lastname%></span>
+            </a>
+          <% } %>
+        </div>
       </div>
     </main>
 
-    
-  
-    <div class="pagination">
-      <% for(let i = 0; i < (Math.ceil(countPhotos / 10)); i++) { %>
-        <div class="btn-pagination"><a href="/home?page=<%=i+1%>"><%= i+1 %></a></div> 
-      <%} %>
-    </div>
-  
-     
   </div>
   
   <script>

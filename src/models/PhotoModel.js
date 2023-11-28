@@ -30,8 +30,12 @@ const PhotoSchema = new EntitySchema({
     },
     userId: {
       type: 'varchar',
-      nullable: false
+      nullable: false,
     },
+    tags: {
+      type: 'varchar',
+      nullable: true,
+    }
   },
   relations: {
     user: {
@@ -41,7 +45,17 @@ const PhotoSchema = new EntitySchema({
             name: 'userId',
             referencedColumnName: 'id'
         }
-    }
+    },
+    likes: {
+      type: 'one-to-many',
+      target: 'likes',
+      inverseSide: 'photo',
+    },
+    tagsPhoto: {
+      type: 'one-to-many',
+      target: 'photo_tag',
+      inverseSide: 'photo',
+    },
   }
 })
 

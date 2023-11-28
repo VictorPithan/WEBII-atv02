@@ -1,8 +1,37 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+form {
+  width: 400px;
+  background: white;
+  border-radius: 8px;
+  padding: 32px;
+}
+
+#title,
+textarea {
+  width: 100%;
+  padding-inline: 0.5rem;
+  padding-block: 0.25rem;
+}
+
+textarea {
+  resize: none;
+  height: 200px;
+}
+
 .containerForm {
+  width: 100%;
   margin-top: 0.5rem;
 }
 
 .container {
+  width: 100%;
   border-bottom: 1px solid rgb(17 24 39 / .1);
   padding-bottom: 3rem;
   margin-bottom: 3rem;
@@ -13,10 +42,11 @@
   line-height: 1.5rem;
   font-weight: 600;
   line-height: 1.75rem;
-  color: rgb(17 24 39);
+  color: #121214;
 }
 
 .containerInputs {
+  width: 100%;
   margin-top: 2.5rem;
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
@@ -24,33 +54,53 @@
   row-gap: 2rem;
 }
 
-.containerTitle > label {
+.containerTitle > label,
+.containerDescription > label,
+.containerTags > label {
   display: block;
-  font-size: 0.875rem;
+  font-size: 1.25rem;
   line-height: 1.25rem;
   font-weight: 500;
   line-height: 1.5rem;
-  color: rgb(17 24 39);
+  color: #121214;
 }
 
-.containerTitle > div {
+.containerTitle > div,
+.containerDescription > div,
+.containerTags > div {
+  width: 100%;
   margin-top: 0.5rem;
   display: flex;
   border-radius: 0.375rem;
   box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
 }
 
+.containerTags > input {
+  width: 100%;
+  padding: 0.25rem;
+}
+
 .containerDescription {
   grid-column: 1 / -1;
 }
 
+.border-dashed {
+  border: 2px dashed #121214;
+  padding-inline: 1rem;
+  padding-block: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .labelPhoto {
   display: block;
-  font-size: 0.875rem;
+  font-size: 1.25rem;
   line-height: 1.25rem;
   font-weight: 500;
   line-height: 1.5rem;
-  color: rgb(17 24 39);
+  color: #121214;
 }
 
 .containerUploadPhoto {
@@ -60,19 +110,19 @@
   line-height: 1.25rem;
   font-weight: 500;
   line-height: 1.5rem;
-  color: rgb(17 24 39);
+  color: #121214;
 }
 
 .containerUploadPhoto > label {
   position: relative;
   cursor: pointer;
   border-radius: 0.375rem;
-  background: white;
-  font-size: 0.875rem;
+  /* background: white; */
+  font-size: 1rem;
   line-height: 1.25rem;
   font-weight: 500;
   line-height: 1.5rem;
-  color: rgb(17 24 39);
+  color: #121214;
 }
 
 .containerBtn {
@@ -84,32 +134,64 @@
 }
 
 .btnCancel {
+  text-decoration: none;
+  display: flex;
+  margin-top: 20px;
+  justify-content: center;
   border-radius: 0.375rem;
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  background-color: white;
+  padding-block: 0.5rem;
+  padding-inline: 0.75rem;
   font-size: 0.875rem;
-  line-height: 1.25rem;
   font-weight: 600;
-  line-height: 1.25rem;
-  color: rgb(17 24 39);
-
+  border: 2px solid #121214;
+  color: #121214;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   cursor: pointer;
 }
 
-.btnSave {
-  border-radius: 0.375rem;
-  background-color: rgb(79 70 229);
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  font-weight: 600;
-  line-height: 1.25rem;
-  color: rgb(17 24 39);
+.btnCancel:hover {
+	background-color: rgb(229 231 235);
+}
 
+.btnCancel:focus-visible {
+	outline-style: solid;
+  outline-width: 2px;
+  outline-offset: 2px;
+  outline-color: rgb(229 231 235);
+}
+
+.btnSave {
+  display: flex;
+  margin-top: 20px;
+  justify-content: center;
+  border-radius: 0.375rem;
+  background-color: #151557;
+  padding-block: 0.5rem;
+  padding-inline: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: white;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   cursor: pointer;
+}
+
+.btnSave:hover {
+	background-color: #212187;
+}
+
+.btnSave:focus-visible {
+	outline-style: solid;
+  outline-width: 2px;
+  outline-offset: 2px;
+  outline-color: #212187;
+}
+
+.wrong {
+  border: 2px solid crimson;
+}
+
+.error {
+  color: crimson;
+  font-size: 14px;
 }

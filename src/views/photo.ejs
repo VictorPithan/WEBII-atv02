@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/globals.css" />
+  <link rel="stylesheet" href="/css/photo.css" />
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <title>Home</title>
+</head>
+<body class="w3-content" style="max-width:1600px">  
+    <main class="">
+      <button class="btn-go-back" onclick="goBack()"><b><i class="ph-fill ph-arrow-fat-left"></i></b></button>
+
+      <div class="image-box">
+          <img src="/uploads/<%= photo.url %>" alt="">
+          <div class="image-content">
+            <div class="box-container">
+            <div>
+              <h1><%= photo.title%></h1>
+            </div>
+
+            <div class="userProfile">
+              <div class="avatarProfile">
+                <%= ownerPhoto.firstname.charAt(0) + ownerPhoto.lastname.charAt(0)%>
+              </div>
+  
+              <span><b><%= ownerPhoto.firstname + ' ' + ownerPhoto.lastname%></b></span>
+            </div>
+
+            <p><%= photo.description%></p>
+            <% if (tagPhoto) { %>
+              <p>
+                <% for(let i = 0; i < tagPhoto.length; i++) { %>
+                  <a href="#"><%= tagPhoto[i].tagName %></a>
+                <% } %>
+              </p>
+            <% } %>
+            </div>
+            <div class="box-icons">
+
+              <button type="button" id="openModalBtn">Ver Likes</button>
+
+              <div id="likesModal" class="modal">
+                <div class="modal-content">
+                  <span class="close" id="closeModalBtn">&times;</span>
+                  <h2>Usuários que Curtiram</h2>
+                  <ul id="likesList"> 
+                    <% if(photoLiked) { %>
+                      <% for(let i = 0; i < photoLiked.length; i++) { %>
+                        <li><%= photoLiked[i].username %></li>
+                    <% }} %>
+                  </ul>
+                </div>
+              </div>
+
+
+              <form action="/photo/<%= photo.id %>" method="POST">
+                
+                <% if (photoLike) { %>
+                  <button type="submit"><i class="ph-fill ph-heart"></i></button>
+                <% } else { %>
+                  <button type="submit"><i class="ph-thin ph-heart"></i></button>
+                <% } %>
+              </form>
+
+              <% if (owner) { %>    
+                <button class="btn-delete" onclick="excluirUsuario('<%= user.id %>', '<%= photo.id %>')"><i class="ph-thin ph-trash"></i></button>
+              <% } %>
+            </div>
+
+          </div>
+
+      </div>
+    </main>
+  
+  <script>
+
+    function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+        document.getElementById("myOverlay").style.display = "block";
+    }
+    
+    function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+        document.getElementById("myOverlay").style.display = "none";
+    }
+
+    function excluirUsuario(userId, photoId) {
+      if (confirm("Tem certeza de que deseja excluir este usuário?")) {
+          window.location.href = `/users/${userId}/delete_photo/${photoId}`;
+          
+      } else {
+          alert("Exclusão de usuário cancelada.");
+      }
+    }
+
+    function goBack() {
+      window.history.back()
+    }
+
+    function openLikesModal() {
+      const modal = document.getElementById('likesModal');
+      modal.style.display = 'block';
+    }
+
+
+    function closeLikesModal() {
+      const modal = document.getElementById('likesModal');
+      modal.style.display = 'none';
+    }
+
+    document.getElementById('openModalBtn').addEventListener('click', openLikesModal);
+    document.getElementById('closeModalBtn').addEventListener('click', closeLikesModal);
+
+  </script>
+  
+  </body>
+</html>

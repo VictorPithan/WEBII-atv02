@@ -2,6 +2,9 @@ body {
   font-family: 'Hepta Slab', sans-serif;
   background-color: rgb(229 231 235);
   color: #121214;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 header {
@@ -9,64 +12,66 @@ header {
   max-width: 30rem;
 }
 
-.grid {
-  display: grid;
-  gap: 30px;
-  grid-template-columns: repeat(auto-fit, 300px);
-  justify-content: left;
-  justify-items: center;
-}
-
-.container {
-  position: relative;
-  width: 300px;
-  outline: 4px solid transparent;
-
-  /* overflow: hidden; */
-  color: white;
-  transition: all .4s;
-}
-
-.container span {
-  font-size: 1.25rem;
-  width: 268px;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1.25rem;
-
-  position: absolute;
-  bottom: 0;
-
-  background-image: linear-gradient(to bottom, transparent, black 80%);
-  /* background-color: #121214; */
-  visibility: hidden;
-  opacity: 0;
-
-  padding-inline: 16px;
-  padding-bottom: 8px;
-
-  transition: all .4s;
-}
-
-
-.container:hover span {
-  visibility: visible;
-  opacity: 1;
-}
-
-.container:hover {
-  outline-color: white;
-
-  transform: scale(1.05);
-}
-
 main {
-  /* display: flex;
-  flex-direction: column; */
-  max-width: 2200px;
-  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+a.userProfile {
+  text-decoration: none;
+  padding-inline: 16px;
+}
+
+a.userProfile:link {
+  color: #121214;
+}
+
+a.userProfile:visited {
+  color: #121214;
+}
+
+a.userProfile:hover {
+  color: #121214;
+}
+
+a.userProfile:active {
+   color: #121214;
+}
+
+.containerList {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: white;
+  width: 300px;
+  height: 800px;
+  padding: 1.5rem;
+  border-radius: 4px;
+}
+
+.userProfile {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.userProfile span {
+  font-size: 1.25rem;
+}
+
+.avatarProfile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  border: 2px solid #121214;
+  border-radius: 99999999px;
+  background-color: rgb(229 231 235);
+  width: 10px;
+  height: 10px;
 }
 
 .avatarWithBorder {
@@ -85,14 +90,6 @@ main {
   width: 132px;
   height: auto;
   background-size: 100% 100%;
-}
-
-.avatarContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: #121214;
 }
 
 #portfolio {
@@ -120,23 +117,23 @@ main {
   background-size: 100% 100%;
 }
 
-a {
-  text-decoration: none;
-  color: white;
-}
-
-.ph-trash:hover {
-  color: red;
-}
-
-/* a {
-  background-color: transparent;
+.avatarContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   color: #121214;
 }
 
-a:active,a:hover {
-  outline-width: 0
-} */
+.list-user {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  justify-content: flex-start;
+  margin-top: 12px;
+}
+
 
 small {
   font-size: 80%
@@ -148,30 +145,6 @@ img {
 
   object-fit: cover;
   aspect-ratio: 1/1;
-}
-
-.btn-pagination {
-  display: flex;
-  width: 14px;
-  padding: 4px;
-  border-radius: 4px;
-  background: rgb(209 213 219);
-  justify-content: center;
-  margin-top: 2rem;
-}
-
-.pagination {
-  display: flex;
-  justify-content: center;
-  gap: 0.25rem;
-}
-
-.btn-pagination:hover {
-  background: rgb(156 163 175);
-}
-
-.btn-pagination > a {
-  color: #121214;
 }
 
 .w3-btn,.w3-button {
@@ -269,6 +242,13 @@ img {
   text-align: center
 }
 
+
+/* .w3-container:after,.w3-container:before,.w3-row:after,.w3-row-padding:after,.w3-row-padding:before,,.w3-bar:before,.w3-bar:after {
+  content: "";
+  display: table;
+  clear: both
+} */
+
 .w3-third {
   float: left;
   width: 100%
@@ -284,7 +264,7 @@ img {
 .w3-content {
   margin-left: auto;
   margin-right: auto;
-  max-width: 2200px;
+  max-width: 980px;
 }
 
 .w3-hide {

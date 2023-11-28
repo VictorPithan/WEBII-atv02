@@ -22,12 +22,14 @@ const UserSchema = new EntitySchema({
     username: {
       type: 'varchar',
       length: 255,
-      nullable: false
+      nullable: false,
+      unique: true
     },
     email: {
       type: 'varchar',
       length: 255,
-      nullable: false
+      nullable: false,
+      unique: true
     },
     password: {
       type: 'varchar',
@@ -38,8 +40,13 @@ const UserSchema = new EntitySchema({
   relations: {
     photos: {
         type: 'one-to-many',
-        target: 'photo',    // tabela
+        target: 'photo',
         inverseSide: 'user'
+    },
+    likes: {
+      type: 'one-to-many',
+      target: 'likes',
+      inverseSide: 'user'
     }
   }
 })
