@@ -20,6 +20,7 @@ router.post("/tags", (req, res) => photoTagController.searchByTag(req, res))
 router.get("/", (req, res) => userController.pageLogin(req, res));
 router.post("/", (req, res) => authController.login(req, res));
 router.get("/home", isAuth, (req, res) => photoController.pageHome(req, res));
+router.get("/my-photos", isAuth, (req, res) => photoController.pageMyPhotos(req, res));
 router.get("/users/:id/delete_photo/:photo_id", isAuth, isOwner, (req, res) => photoController.deletePhoto(req, res))
 router.get("/friend-profile/:id", isAuth, (req, res) => photoController.pageFriendProfile(req, res));
 router.get("/create-user", (req, res) => userController.pageCreateUser(req, res));
@@ -37,9 +38,6 @@ router.get("/friend-list", isAuth, (req, res) => userController.getUsers(req, re
 router.get("/logout", (req, res) => authController.logout(req, res));
 
 router.get('/page-not-found', (req, res) => res.render('page-not-found'));
-
-
-
 
 module.exports = {
   usersRouter: router,

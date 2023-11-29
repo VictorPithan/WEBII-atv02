@@ -128,12 +128,3 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
-
-# BANCO DE DADOS SQLITE3
-*.db
-
-# MIGRATIONS
-/migrations
-
-# UPLOADS
-/public/uploads/

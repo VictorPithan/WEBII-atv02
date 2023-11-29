@@ -24,6 +24,40 @@ class PhotoController {
         });
 
         const photos = await photoRepository.find({
+          order: { created_at: 'DESC' },
+          take: perPage,
+          skip: (page - 1) * perPage,
+        })
+
+        const countPhotos = await photoRepository.count()
+
+        if(!user) {
+          return res.status(400).send('Bad request - missing user login');
+        }
+
+        delete user.password
+
+        return res.status(200).render('home', { user, photos, countPhotos })
+
+      } catch (error) {
+        return res.status(400).send('Bad request - missing user login');
+      }
+
+    }
+
+    async pageMyPhotos(req, res) {
+      try {
+        const userRepository = dataSource.getRepository(UserSchema)
+        const photoRepository = dataSource.getRepository(PhotoSchema)
+
+        const page = req.query.page || 1;
+        const perPage = 10;
+
+        const user = await userRepository.findOne({ 
+          where: { id: req.session?.user?.id || null},
+        });
+
+        const photos = await photoRepository.find({
           where: { userId: req.session?.user?.id || null },
           take: perPage,
           skip: (page - 1) * perPage,
@@ -39,7 +73,7 @@ class PhotoController {
 
         delete user.password
 
-        return res.status(200).render('home', { user, photos, countPhotos })
+        return res.status(200).render('my-photos', { user, photos, countPhotos })
 
       } catch (error) {
         return res.status(400).send('Bad request - missing user login');
@@ -118,15 +152,15 @@ class PhotoController {
           where: { photoId }
         })
 
-        console.log({photoLike})
-        console.log({photoLiked})
-
+        const photoLikedCount = await likeRepository.count({
+          where: { photoId }
+        })
 
         const tagPhoto = await tagRepository.find({
           where: { photoId },
         })
 
-        return res.status(200).render('photo', { user, photo, owner, photoLiked, photoLike, ownerPhoto, tagPhoto });
+        return res.status(200).render('photo', { user, photo, owner, photoLiked, photoLike, ownerPhoto, tagPhoto, photoLikedCount });
       } catch (error) {
         return res.status(400).send('Bad request');
       }
@@ -191,17 +225,13 @@ class PhotoController {
                 where: { tagName: '#' + tagsArray[i] }
               })
 
-              console.log("Tag verificada => ", existTag)
-
               let tag
 
               if(existTag) {
                 tag = await tagRepository.save(existTag);
-                console.log("Tag sendo utilizada novamente", {tag})
               } else {
                 const newObjectTag = tagRepository.create({ tagName: "#" + tagsArray[i] });
                 tag = await tagRepository.save(newObjectTag);
-                console.log("Tag sendo criada", {tag})
               }
 
               const newPhotoTagObject = await photoTagRepository.save({
@@ -249,10 +279,7 @@ class PhotoController {
           where: { photoId }
         })
 
-        console.log(JSON.stringify(photoTag))
-
         for (let i = 0; i < photoTag.length; i++) {
-          console.log("Dentro do for => ", JSON.stringify(photoTag[i]))
           await photoTagRepository.delete(photoTag[i])
         }
   
